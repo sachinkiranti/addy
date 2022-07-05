@@ -12,9 +12,9 @@
 namespace SachinKiranti\Addy\Console;
 
 use JsonException;
-use Illuminate\Support\Str;
 use Illuminate\Routing\Route;
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
@@ -65,16 +65,15 @@ class GeneratorCommand extends Command
         $router = app('router');
 
         // Get all the route list
-        $routerList = collect($router->getRoutes())
+        $routerList = Collection::make($router->getRoutes())
             ->flatMap(function (Route $route) {
                 return [
                     $route->getName() => '/' . $route->uri()
                 ];
             })
-            ->reject(static function ($url, $name) {
-                // get only the actions url for xhr
-                return !Str::startsWith($name, 'action.');
-            });
+            ->filterRoutes(
+                config('addy.filters', [])
+            );
 
         $content = $this->files->get( realpath(__DIR__ . DIRECTORY_SEPARATOR .'stubs'.DIRECTORY_SEPARATOR  . 'route.stub') );
 
