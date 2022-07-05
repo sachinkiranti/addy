@@ -1,0 +1,54 @@
+{
+    "name": "sachinkiranti/addy",
+    "description": "Easy access of Laravel Routes in JavaScript",
+    "keywords": [
+        "laravel",
+        "routes",
+        "javascript",
+        "addy"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/sachinkiranti/addy/issues",
+        "source": "https://github.com/sachinkiranti/addy"
+    },
+    "autoload": {
+        "psr-4": {
+            "SachinKiranti\\Addy\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SachinKiranti\\Addy\\Tests\\": "tests"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sachin Rai",
+            "email": "sachinkiranti@gmail.com",
+            "homepage": "https://raisachin.com.np",
+            "role": "Maintainer"
+        }
+    ],
+    "require": {
+        "ext-json": "*",
+        "php": "^8.0|^8.1",
+        "illuminate/support": "^8.0|^9.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SachinKiranti\\Addy\\AddyServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
